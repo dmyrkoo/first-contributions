@@ -1,16 +1,22 @@
-name: My Summer School CI
+name: Check README Workflow
 
-on: [push, pull_request]
+on: [push, workflow_dispatch] # workflow_dispatch додає кнопку ручного запуску (крок 6)
 
 jobs:
-  build:
+  check-readme:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         
-      - name: Print welcome message
-        run: echo "Hello! Lab 4 workflow is running successfully."
+      - name: Hello World
+        run: echo "Hello World! Checking files..."
         
-      - name: Check system info
-        run: uname -a
+      - name: Check if README.md exists
+        run: |
+          if [ -f README.md ]; then
+            echo "Success: README.md is there!"
+          else
+            echo "Error: README.md is missing!"
+            exit 1
+          fi
