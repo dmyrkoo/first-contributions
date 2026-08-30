@@ -1,0 +1,16 @@
+name: My Summer School CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Print welcome message
+        run: echo "Hello! Lab 4 workflow is running successfully."
+        
+      - name: Check system info
+        run: uname -a
